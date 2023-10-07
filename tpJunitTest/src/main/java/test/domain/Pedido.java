@@ -62,7 +62,7 @@ public class Pedido {
 	}
 
 	public void solicitarPedido() throws SinSaldoException {
-		float total=totalPedido();
+		float total = totalPedido();
 		this.getUsuario().descontarSaldo(total);
 		this.setEstado("Pagado");
 		System.out.println("Pedido pagado...");

@@ -68,7 +68,7 @@ public class RecetaTest {
 
     //genero una receta al azar para el test
     @Before
-    public void elegirUnaReceta() throws Exception {
+    public void elegirUnaRecetaAlAzar() throws Exception {
         Random generadorAleatorios = new Random();
         int numeroAleatorio = generadorAleatorios.nextInt(RecetaTest.recetas.size());
         System.out.println(numeroAleatorio);

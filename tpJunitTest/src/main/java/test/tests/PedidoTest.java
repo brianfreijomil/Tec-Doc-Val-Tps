@@ -1,12 +1,20 @@
-package test;
+package test.tests;
 
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import test.domain.*;
 import test.exceptions.SinSaldoException;
-import test.tests.TestRunner;
 
-public class Main {
+public class PedidoTest {
 
-    public static void main(String[] args) {
+    static Usuario usuarioPrueba;
+    static Pedido p;
+
+    @BeforeClass
+    public static void loadData() {
 
         //alta d ingredientes
         Ingrediente huevo=new Ingrediente("huevo", "unidades",240, 2400);
@@ -41,14 +49,6 @@ public class Main {
         papasFritas.addIngrediente(ir5);
         papasFritas.addIngrediente(ir3);
 
-        //alta de usuarios
-        Usuario u1 =new Usuario("Homero Simpson", 0, 100, "homerojsimpson@springfield.com");
-        Usuario u2 =new Usuario("Barney Gomez", 0, 0, "el14gomez@springfield.com");
-        Usuario u3 =new Usuario("Edna Krabappel", 1, 0, "ednak@springfield.com");
-        Usuario u4 =new Usuario("Homero", 0, 0, "homerojsimpson@springfield.com");
-
-        Usuario u5 =new Usuario("Homero", 0, 0, "homerojsimpson@springfield.com");
-
         //alta de productos
         Producto p1= new ProductoBasico("Lata Coca Cola", 10, 20);
         Producto p2= new ProductoBasico("Lata Sprite", 10, 22);
@@ -59,63 +59,40 @@ public class Main {
         Producto p5= new ProductoElaborado("PATATAS", 120);
         ((ProductoElaborado)p3).setReceta(papasFritas);
 
-        //alta de mostrador
-        Mostrador m1= new Mostrador();
-        m1.setNombreOperador("Jose");
-        Mostrador m2= new Mostrador();
-        m2.setNombreOperador("Maria");
-
-        //alta de cocina
-        Cocina c= new Cocina();
-        //c.start();
+        usuarioPrueba = new Usuario("Homero", 0, 100, "homerojsimpson@springfield.com");
 
         //alta de un pedido
-        Pedido p= new Pedido();
-        p.setUsuario(u1);
+        p = new Pedido();
+        p.setUsuario(usuarioPrueba);
         p.agregarItem(new ItemPedido(1,p1));
         p.agregarItem(new ItemPedido(1, p3));
-        try {
-            p.solicitarPedido();
-            //Mostrador ordenesActuales = new Mostrador();
-            //ordenesActuales.agregar(p);
-            p.prepararPedido();
-            p.terminarPedido();
-            p.entregarPedido();
-        } catch (SinSaldoException ex) {
-            System.out.println("No posee saldo suficiente");
-        }
-        System.out.println("Saldo Usuario "+u1.getSaldo());
-
-        /*
-        a. Se pueden agregar usuarios repetidos
-        b. No se puede crear un usuario con un correo electrónico inválido
-        (contiene @)
-        c. Una receta está compuesta por uno o más ingredientes
-        d. Un pedido reduce en saldo de un usuario
-        e. La venta de productos o elaboración de estos dejan una ganancia
-        mayor al 20%
-        f. No es posible realizar una receta si no se cuenta con todos los
-        ingredientes
-        g. La reposición de stock aumenta el número de ítems disponibles.*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
+    @BeforeClass
+    public static void tearDownBeforeClass() throws Exception {
+        System.out.println("---inicia PedidoTest---");
+    }
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+        System.out.println("---finaliza PedidoTest---");
+    }
+
+    //d. Un pedido reduce en saldo de un usuario
+    @Test
+    public void testPedidoReduceSaldoUsuario() throws SinSaldoException {
+        float saldoInicial = usuarioPrueba.getSaldo();
+        try {
+            p.solicitarPedido();
+            p.prepararPedido();
+            p.terminarPedido();
+            p.entregarPedido();
+        } catch (SinSaldoException ex) { //chequeo saldo de usuario para realizar pago
+            System.out.println("No posee saldo suficiente");
+        }
+        boolean state = saldoInicial > usuarioPrueba.getSaldo();
+        //chequeo reduccion de saldo
+        Assert.assertTrue("El saldo del usuario no se redujo", state);
+    }
 
 }
