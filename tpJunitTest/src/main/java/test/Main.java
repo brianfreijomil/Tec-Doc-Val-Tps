@@ -27,17 +27,17 @@ public class Main {
         ItemReceta ir6 = new ItemReceta(panHamburguesa, 1);
 
         //alta de recetas
-        Receta tortilla=new Receta("Tortilla",15,1000);
+        Receta tortilla=new Receta("Tortilla",15,1000, "Huevo Papa");
         tortilla.addIngrediente(ir4);
         tortilla.addIngrediente(ir5);
 
-        Receta hamburguesa = new Receta("hamburguesa grande",5,2000);
+        Receta hamburguesa = new Receta("hamburguesa grande",5,2000, "CarnePicada Huevo Sal Pan de Hamburguesa");
         hamburguesa.addIngrediente(ir2);
         hamburguesa.addIngrediente(ir1);
         hamburguesa.addIngrediente(ir3);
         hamburguesa.addIngrediente(ir6);
 
-        Receta papasFritas = new Receta("papas fritas",7,850);
+        Receta papasFritas = new Receta("papas fritas",7,850, "Papa Sal");
         papasFritas.addIngrediente(ir5);
         papasFritas.addIngrediente(ir3);
 
