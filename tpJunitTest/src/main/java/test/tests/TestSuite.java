@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
         UsuarioTest.class,
         AlmacenTest.class,
         RecetaTest.class,
-
+        PedidoTest.class,
+        StockTest.class,
 })
 public class TestSuite {
 }
