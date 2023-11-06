@@ -14,12 +14,11 @@ public class Ingrediente implements Consumible {
 	}
 
 	public void consumirStock(int cantidad) {
-		this.cantidad-=cantidad;
+		this.cantidad -= cantidad;
 	}
 
 	public void reponerStock(int cantidad) {
-
-		this.cantidad+=cantidad;
+		this.cantidad += cantidad;
 	}
 
 	public int getStock() {

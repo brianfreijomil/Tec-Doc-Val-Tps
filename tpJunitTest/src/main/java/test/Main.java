@@ -14,7 +14,7 @@ public class Main {
         Ingrediente papa = new Ingrediente("Papa","gramos",20000,5000);
         Ingrediente sal = new Ingrediente("Sal","gramos",1000,2000);
         Ingrediente carnePicada = new Ingrediente("Carne picada","grmos",10000,20000);
-        Ingrediente panHamburguesa = new Ingrediente("Pan de Hamburguesa","unidades",100,20000);
+        Ingrediente panHamburguesa = new Ingrediente("Pan de Hamburguesa","unidades",3300,20000);
         Producto gaseosaCola = new ProductoBasico("Coca Cola", 10,20);
         Producto agua = new ProductoBasico("Agua",10,22);
 
@@ -68,6 +68,7 @@ public class Main {
         //alta de cocina
         Cocina c= new Cocina();
         //c.start();
+
 
         //alta de un pedido
         Pedido p= new Pedido();

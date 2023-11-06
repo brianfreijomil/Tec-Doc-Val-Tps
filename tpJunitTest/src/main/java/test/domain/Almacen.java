@@ -8,7 +8,6 @@ public class Almacen {
 
 	public static void IngresarConsumibles(Consumible cual, int cuanto) {
 		cual.reponerStock(cuanto);
-
 	}
 	
 	public static void ExtraerConsumibles(Consumible cual, int cuanto) {

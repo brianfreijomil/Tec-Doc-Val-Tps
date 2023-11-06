@@ -59,7 +59,7 @@ public class PedidoTest {
         Producto p5= new ProductoElaborado("PATATAS", 120);
         ((ProductoElaborado)p3).setReceta(papasFritas);
 
-        usuarioPrueba = new Usuario("Homero", 0, 100, "homerojsimpson@springfield.com");
+        usuarioPrueba = new Usuario("Homero", 0, 2000, "homerojsimpson@springfield.com");
 
         //alta de un pedido
         p = new Pedido();
